@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="english">
+  <head>
+    <title>Deadlinews</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./index.css" rel="stylesheet" />
+
+      <div class="desktop1-container">
+        <div class="desktop1-desktop1">
+          <div class="desktop1-newposts">
+            <div class="desktop1-footer-section">
+              <div class="desktop1-post-cards">
+                <div class="desktop1-imgtechnology04">
+                  <img
+                    src="public/external/unsplash0vgg7cqtwcoi889-stcn-400w.png"
+                    alt="unsplash0VGG7cqTwCoI889"
+                    class="desktop1-unsplash0vgg7cq-tw-co"
+                  />
+                </div>
+                <div class="desktop1-frame8">
+                  <div class="desktop1-title">
+                    <span class="desktop1-text H5">
+                      <span>12 Mobile UX Design Trends For 2023</span>
+                    </span>
+                  </div>
+                  <div class="desktop1-explanation">
+                    <span class="desktop1-text02 Paragraph">
+                      <span>
+                        Things move quickly in the mobile app universe. To
+                        succeed in the field of mobile UX design, designers must
+                        have the foresight and prepare for new challenges around
+                        the corner
+                      </span>
+                    </span>
+                  </div>
+                  <div class="desktop1-info">
+                    <div class="desktop1-content">
+                      <div class="desktop1-imgavatar10">
+                        <img
+                          src="public/external/unsplashl2dtmhqzx4qi889-oe-200w.png"
+                          alt="unsplashL2dTmhQzx4QI889"
+                          class="desktop1-unsplash-l2d-tmh-qzx4q"
+                        />
+                      </div>
+                      <div class="desktop1-text04">
+                        <span class="desktop1-text05">
+                          <span>Rigan Algifari</span>
+                        </span>
+                        <span class="desktop1-text07">
+                          <span>July 14 , 2023</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="desktop1-v6iconfree">
+                      <span class="desktop1-text09"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="desktop1-post-cards1">
+                <div class="desktop1-imganimal03">
+                  <img
+                    src="public/external/unsplashtk71sys8ubyi889-cmsk-400w.png"
+                    alt="unsplashTk71SYS8UBYI889"
+                    class="desktop1-unsplash-tk71sys8uby"
+                  />
+                </div>
+                <div class="desktop1-frame81">
+                  <div class="desktop1-title1">
+                    <span class="desktop1-text10 H5">
+                      <span>
+                        What a Disabled Squirrel Taught Me About Life, Work, and
+                        Love
+                      </span>
+                    </span>
+                  </div>
+                  <div class="desktop1-explanation1">
+                    <span class="desktop1-text12 Paragraph">
+                      <span>
+                        Why it helps to know what it’s like, and the exquisite
+                        beauty of empathy These days, the wood patio area just
+                        outside my kitchen door is a riot
+                      </span>
+                    </span>
+                  </div>
+                  <div class="desktop1-info1">
+                    <div class="desktop1-content1">
+                      <div class="desktop1-imgavatar12">
+                        <img
+                          src="public/external/unsplashzhvm3xiohoei889-qm-200w.png"
+                          alt="unsplashZHvM3XIOHoEI889"
+                          class="desktop1-unsplash-z-hv-m3xio-ho-e"
+                        />
+                      </div>
+                      <div class="desktop1-text14">
+                        <span class="desktop1-text15"><span>Sebastian</span></span>
+                        <span class="desktop1-text17">
+                          <span>July 12 , 2023</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="desktop1-v6iconfree1">
+                      <span class="desktop1-text19"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="desktop1-post-cards2">
+                <div class="desktop1-imgabstract06">
+                  <img
+                    src="public/external/unsplashfg7j6nnebbci889-1waf-400w.png"
+                    alt="unsplashfg7J6NnebBcI889"
+                    class="desktop1-unsplashfg7j6-nneb-bc"
+                  />
+                </div>
+                <div class="desktop1-frame82">
+                  <div class="desktop1-title2">
+                    <span class="desktop1-text20 H5">
+                      <span>How to Become a Master Designer</span>
+                    </span>
+                  </div>
+                  <div class="desktop1-explanation2">
+                    <span class="desktop1-text22 Paragraph">
+                      <span>
+                        Many outsiders believe that designers are unicorns,
+                        gifted or special in some way. We have an innate ability
+                        to create gorgeous interfaces, a natural talent for
+                        matching complementary colors, an unexplainable
+                        intuition…
+                      </span>
+                    </span>
+                  </div>
+                  <div class="desktop1-info2">
+                    <div class="desktop1-content2">
+                      <div class="desktop1-imgavatar03">
+                        <img
+                          src="public/external/unsplashb5pltlpr7yai889-yee6-200w.png"
+                          alt="unsplashB5PLtlpR7YAI889"
+                          class="desktop1-unsplash-b5p-ltlp-r7ya"
+                        />
+                      </div>
+                      <div class="desktop1-text24">
+                        <span class="desktop1-text25"><span>Titys Auliyah</span></span>
+                        <span class="desktop1-text27">
+                          <span>July 10 , 2023</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="desktop1-v6iconfree2">
+                      <span class="desktop1-text29"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="desktop1-header-section">
+              <div class="desktop1-title-section">
+                <img
+                  src="public/external/rectanglei889-9lmf-200w.png"
+                  alt="RectangleI889"
+                  class="desktop1-rectangle"
+                />
+                <span class="desktop1-text30 H4"><span>new posts</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="desktop1-search">
+            <div class="desktop1-v6iconfree3">
+              <span class="desktop1-text32">:</span>
+            </div>
+            <span class="desktop1-text33"><span>Search anything</span></span>
+            <div class="desktop1-v6iconfree4">
+              <span class="desktop1-text35"></span>
+            </div>
+          </div>
+          <div class="desktop1-olympics">
+            <div class="desktop1-imgolympics">
+              <img
+                src="public/external/imagei813-sr5e-500h.png"
+                alt="ImageI813"
+                class="desktop1-image"
+              />
+            </div>
+            <div class="desktop1-content-slider">
+              <div class="desktop1-title3">
+                <span class="desktop1-text36">
+                  <span>
+                    5 REASONS YOU SHOULD OPPOSE THE OLYMPICS COMING TO YOUR
+                    HOMETOWN
+                  </span>
+                </span>
+              </div>
+              <div class="desktop1-explanation3">
+                <span class="desktop1-text38">
+                  <span>
+                    As the Olympics returns in summer 2024 in Paris, questions
+                    about the ethics, efficacy, and economics of the mega-event
+                    once again emerge.
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="desktop1-israel">
+            <div class="desktop1-imgisrael">
+              <img
+                src="public/external/imagei811-fql-500h.png"
+                alt="ImageI811"
+                class="desktop1-image1"
+              />
+            </div>
+            <div class="desktop1-content-slider1">
+              <div class="desktop1-title4">
+                <span class="desktop1-text40">
+                  <span>
+                    THE FEAR IS EVERYWHERE’: ISRAEL’S INTERNAL CRACKDOWN
+                  </span>
+                </span>
+              </div>
+              <div class="desktop1-explanation4">
+                <span class="desktop1-text42">
+                  <span>
+                    As Israel’s genocide in Gaza continues, the Netanyahu
+                    government turns to fascist repression against dissenters
+                    from within.
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="desktop1-toptags">
+            <img
+              src="public/external/rectangle26301-9d1d-200h.png"
+              alt="Rectangle26301"
+              class="desktop1-rectangle2"
+            />
+            <div class="desktop1-tags">
+              <div class="desktop1-featured">
+                <div class="desktop1-imgfeatured">
+                  <img
+                    src="public/external/featuredi630-trf-200h.png"
+                    alt="featuredI630"
+                    class="desktop1-featured1"
+                  />
+                </div>
+                <span class="desktop1-text44"><span>featured</span></span>
+              </div>
+              <div class="desktop1-world">
+                <div class="desktop1-imgworld">
+                  <img
+                    src="public/external/worldi630-oc4-200h.png"
+                    alt="worldI630"
+                    class="desktop1-world1"
+                  />
+                </div>
+                <span class="desktop1-text46"><span>World</span></span>
+              </div>
+              <div class="desktop1-indonesia">
+                <div class="desktop1-imgindonesia">
+                  <img
+                    src="public/external/indonesiai630-ovxl-200h.png"
+                    alt="indonesiaI630"
+                    class="desktop1-indonesia1"
+                  />
+                </div>
+                <span class="desktop1-text48"><span>Indonesia</span></span>
+              </div>
+              <div class="desktop1-sports">
+                <div class="desktop1-imgsports">
+                  <img
+                    src="public/external/sportsi630-lid-200h.png"
+                    alt="sportsI630"
+                    class="desktop1-sports1"
+                  />
+                </div>
+                <span class="desktop1-text50"><span>Sports</span></span>
+              </div>
+              <div class="desktop1-business">
+                <div class="desktop1-imgbusiness">
+                  <img
+                    src="public/external/businessi630-odn-200h.png"
+                    alt="businessI630"
+                    class="desktop1-business1"
+                  />
+                </div>
+                <span class="desktop1-text52"><span>Business</span></span>
+              </div>
+              <div class="desktop1-techonlogy">
+                <div class="desktop1-imgtechnology">
+                  <img
+                    src="public/external/technologyi630-uxyy-200h.png"
+                    alt="technologyI630"
+                    class="desktop1-technology"
+                  />
+                </div>
+                <span class="desktop1-text54"><span>technology</span></span>
+              </div>
+              <div class="desktop1-travel">
+                <div class="desktop1-imgtravel">
+                  <img
+                    src="public/external/traveli631-78gb-200h.png"
+                    alt="travelI631"
+                    class="desktop1-travel1"
+                  />
+                </div>
+                <span class="desktop1-text56"><span>Travel</span></span>
+              </div>
+              <div class="desktop1-more">
+                <div class="desktop1-imgmore">
+                  <img
+                    src="public/external/morei630-1wao-200h.png"
+                    alt="moreI630"
+                    class="desktop1-more1"
+                  />
+                </div>
+                <span class="desktop1-text58"><span>More</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="desktop1-header">
+            <span class="desktop1-text60"><span>Deadlinews</span></span>
+            <img
+              src="public/external/rectangle163-w69i-200h.png"
+              alt="Rectangle163"
+              class="desktop1-rectangle1"
+            />
+            <span class="desktop1-text62"><span>Rigan titys</span></span>
+            <span class="desktop1-text64"><span>Home</span></span>
+            <span class="desktop1-text66"><span>Subscribe</span></span>
+            <span class="desktop1-text68"><span>About Us</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
