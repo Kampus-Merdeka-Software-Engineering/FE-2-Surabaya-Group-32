@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="min-vh-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        .active-link, 
+        #link-0:hover, 
+        #link-1:hover, 
+        #link-2:hover, 
+        #link-3:hover, 
+        #link-4:hover, 
+        #link-5:hover, 
+        #link-6:hover, 
+        #link-7:hover { 
+            background-color: #174461 !important;
+            cursor: pointer;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" rel="stylesheet" />
+
+</head>
+<body class="w-100 min-vh-100">
+    <section class="container">
+        <div class="row">
+            <div id="date" class="col d-flex align-items-center text-truncate">
+                Monday November 12, 2023
+            </div>
+            <div class="col d-flex fs-1 fw-bold justify-content-center" style="color: #3991C9;">
+                <h1>
+                    DEADLINEWS
+                </h1>
+            </div>
+            <div class="d-flex col align-items-center justify-content-between">
+                <div class="d-flex align-items-center mx-2">
+                    <div class="mx-1">
+                        25 C
+                    </div>
+                    <img class="mx-1" style="width: 25px;" src="../../assets/icons8-forecast-96.png" alt="forecast">
+                </div>
+                <div class="mx-2">English</div>
+                <div>
+                    <a href="#link-1" class="text-decoration-none">
+                        <img style="width: 40px;" src="../../assets/icons8-linkedin-96.png" alt="linkedin">
+                    </a>
+                    <a href="#link-2" class="text-decoration-none">
+                        <img style="width: 40px;" src="../../assets/icons8-twitter-squared-96.png" alt="twitter">
+                    </a>
+                    <a href="#link-3" class="text-decoration-none">
+                        <img style="width: 40px;" src="../../assets/icons8-instagram-96.png" alt="facebook">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="d-flex container align-items-center text-center my-2">
+        <a id="link-0" onclick="changeTag(0)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none active-link" style="background-color: #3991C9; border-radius: 15px 0 0 15px;">
+            Featured
+        </a>
+        <a id="link-1" onclick="changeTag(1)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none " style="background-color: #3991C9;">
+            World
+        </a>
+        <a id="link-2" onclick="changeTag(2)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none " style="background-color: #3991C9;">
+            Indonesia
+        </a>
+        <a id="link-3" onclick="changeTag(3)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none " style="background-color: #3991C9;">
+            Sports
+        </a>
+        <a id="link-4" onclick="changeTag(4)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none " style="background-color: #3991C9;">
+            Business
+        </a>
+        <a id="link-5" onclick="changeTag(5)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none " style="background-color: #3991C9;">
+            Technology
+        </a>
+        <a id="link-6" onclick="changeTag(6)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none " style="background-color: #3991C9;">
+            Travel
+        </a>
+        <a id="link-7" onclick="changeTag(7)" class="flex-grow-1 p-2 text-white border-1 border border-dark text-decoration-none " style="background-color: #3991C9; border-radius: 0 15px 15px 0;">
+            More
+        </a>
+    </section>
+
+    <main class="container mt-2 pe-0">
+        <div class="row container-fluid">
+            <div class="col" id="data-left">
+                <!-- Data left disini -->
+            </div>
+            <div class="col">
+                <div class="my-2">
+                    <div class="w-100 d-flex align-items-center justify-content-end">
+                        <input class="fs-4" type="text" style="border-radius: 20px; text-indent: 20px; min-height: 70px; min-width: 561px;" placeholder="Search">
+                        <button class="btn" type="button" style="z-index: 10; position: absolute;" onclick="alert('sabar der, blm jalan')">
+                            <img src="../../assets/icons8-search-96 1.png" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="" id="data-right">
+                    <!-- Data right disini -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/global.js"></script>
+    <script>
+        
+        const dataExecuted = async () =>{
+            try {
+                var urls = window.location.href;
+                var urlObj = new URL(urls);
+                var execute = urlObj.searchParams.get("tag");
+                
+                var url = `http://localhost:3000/articles/`
+                if (execute == 0 || execute == 7 || execute == null) {
+                    url = `http://localhost:3000/articles/`
+                } else {
+                    url = `http://localhost:3000/articles/tag/${execute}`
+                }
+                const response = await fetch(url,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
+                const data = await response.json();
+                const dataLeft = document.getElementById('data-left');
+                const dataRight = document.getElementById('data-right');
+                var dataLeftHTML = '';
+                var dataRightHTML = '';
+                function formatTimeAgo(dateString) {
+                    const currentDate = new Date();
+                    const previousDate = new Date(dateString);
+                    const timeDifference = currentDate - previousDate;
+                    const seconds = Math.floor(timeDifference / 1000);
+                    const minutes = Math.floor(seconds / 60);
+                    const hours = Math.floor(minutes / 60);
+                    const days = Math.floor(hours / 24);
+
+                    if (seconds < 60) {
+                        return `Updated ${seconds} seconds ago`;
+                    } else if (minutes < 60) {
+                        return `Updated ${minutes} minutes ago`;
+                    } else if (hours < 24) {
+                        return `Updated ${hours} hours ago`;
+                    } else {
+                        return `Updated ${days} days ago`;
+                    }
+                }
+
+                for (let i = 0; i < data.length; i++) {
+                    if (i % 2 === 1) {
+                        dataLeftHTML += `
+                        <a href="/app/content?id=${data[i].id}" class="row my-2" style="background-color: #3991C9;">
+                            <div class="ps-0 row">
+                                <img src="../../assets/${data[i].image ? data[i].image : "image 4.png"}" alt="img" class="ratio-1x1 col" width="300" height="300" style="object-fit: contain;">
+                                <div class="text-white p-4 col">
+                                    <p class="fs-4 row">
+                                        ${data[i].tag_name}
+                                    </p>
+                                    <p class="fs-4 row">
+                                        ${data[i].article_title}
+                                    </p>
+                                    <p class="bottom-0 fs-6 row">
+                                        ${formatTimeAgo(data[i].created_at)}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        `;
+                    } else {
+                        dataRightHTML += `
+                        <a href="/app/content?id=${data[i].id}" class="row my-2 ms-1" style="background-color: #3991C9;">
+                            <div class="d-flex ps-0">
+                                <img src="../../assets/${data[i].image ? data[i].image : "image 5.png"}" alt="img" width="200" height="200" class="ratio-1x1" style="object-fit: contain;">
+                                <div class="text-white p-2">
+                                    <p class="fs-4">
+                                        ${data[i].tag_name}
+                                    </p>
+                                    <p class="fs-5">
+                                        ${data[i].title}
+                                    </p>
+                                    <p class="fs-6 bottom-0 text-end">
+                                        ${formatTimeAgo(data[i].created_at)}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>`;
+                    }
+                }
+
+                dataLeft.innerHTML = dataLeftHTML;
+                dataRight.innerHTML = dataRightHTML;
+                const setActive = document.getElementsByClassName('active-link');
+                for (let i = 0; i < setActive.length; i++) {
+                    setActive[i].classList.remove('active-link');
+                }
+                execute ? document.getElementById(`link-${execute}`).classList.add('active-link') : document.getElementById(`link-0`).classList.add('active-link');
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        dataExecuted();
+
+        function changeTag(tag) {
+            try {
+                var urls = window.location.href;
+                var urlObj = new URL(urls);
+                window.location.href = `${urlObj.origin}/app/home/?tag=${tag}`;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
