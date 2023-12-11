@@ -26,13 +26,13 @@
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="./css/nucleo-icons.css" rel="stylesheet" />
-  <link href="./css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="./css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="./css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -230,7 +230,7 @@
               </div>
               <div class="col">
                 <label for="article_title">Article Title</label>
-                <input id="article_title" name="article_title" type="text" placeholder="gokil" value="gokil" class="w-100 form-control mb-3">
+                <input id="article_title" name="article_title" type="text" placeholder="title" value="title" class="w-100 form-control mb-3">
                 
               </div>
               <div class="col">
@@ -245,10 +245,15 @@
                   <option value="6">Travel</option>
                 </select>
               </div>
-  
+              
+              <div class="w-100">
+                <label for="article_link">Article Link</label>
+                <input id="article_link" name="article_link" type="text" placeholder="https://link" class="w-100 form-control mb-3">
+              </div>
+
               <div class="w-100">
                 <label for="article_content">Article Content</label>
-                <textarea id="article_content" name="article_content" type="text" class="w-100 form-control mb-3" cols="30" rows="5">gokil</textarea>
+                <textarea id="article_content" name="article_content" type="text" class="w-100 form-control mb-3" cols="30" rows="5">Konten</textarea>
               </div>
             </div>
             <div class="modal-footer">
@@ -316,10 +321,10 @@
   </div>
 
   <!--   Core JS Files   -->
-  <script src="./js/core/popper.min.js"></script>
-  <script src="./js/core/bootstrap.min.js"></script>
-  <script src="./js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="./js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../../assets/js/core/popper.min.js"></script>
+  <script src="../../assets/js/core/bootstrap.min.js"></script>
+  <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -334,7 +339,7 @@
       d.setTime(d.getTime() - (100*24*60*60*1000));
       var expires = "expires="+ d.toUTCString();
       document.cookie = "login-token=; "+expires+"; path=/";
-      window.location.href = "http://localhost:5500/app/login";
+      window.location.href = "http://localhost:3000/app/login";
     }
 
     const activeChange = (e) => {
@@ -344,28 +349,32 @@
       document.getElementById("side-item-" + e).classList.add("active");
     }
 
-    function getCookie(cname) {
-      let name = cname + "=";
-      let ca = document.cookie.split(';');
-      for(let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
+    const dataExecuted = async () => {
+
+      function formatTimeAgo(dateString) {
+          const currentDate = new Date();
+          const previousDate = new Date(dateString);
+          const timeDifference = currentDate - previousDate;
+          const seconds = Math.floor(timeDifference / 1000);
+          const minutes = Math.floor(seconds / 60);
+          const hours = Math.floor(minutes / 60);
+          const days = Math.floor(hours / 24);
+
+          if (seconds < 60) {
+              return `Updated ${seconds} seconds ago`;
+          } else if (minutes < 60) {
+              return `Updated ${minutes} minutes ago`;
+          } else if (hours < 24) {
+              return `Updated ${hours} hours ago`;
+          } else {
+              return `Updated ${days} days ago`;
           }
       }
-      return "";
-    }
-
-    const dataExecuted = async () => {
       
       const response= await fetch('http://localhost:3000/articles', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'login-token': getCookie('login-token'),
               },
               credentials: 'include',
         });
@@ -374,6 +383,7 @@
       console.log(dataTable);
       const table = document.getElementById("table-body");
       var tableContent = "";
+      
       dataTable.forEach((data) => {
         tableContent += `
           <tr>
@@ -392,7 +402,7 @@
               <span class="badge badge-sm bg-gradient-success">${data.tag_name}</span>
             </td>
             <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold">${data.created_at}</span>
+              <span class="text-secondary text-xs font-weight-bold">${formatTimeAgo(data.created_at)}</span>
             </td>
             <td class="align-middle">
               <button class="btn bg-gradient-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-edit-${data.id}">
@@ -434,7 +444,12 @@
                           </select>
                           
                           <label for="created_at">Timestamp</label>
-                          <input id="created_at" name="created_at" type="text" value="${data.created_at}" class="w-100 form-control mb-3" disabled>
+                          <input id="created_at" name="created_at" type="text" value="${formatTimeAgo(data.created_at)}" class="w-100 form-control mb-3" disabled>
+                        </div>
+
+                        <div class="w-100">
+                          <label for="article_link">Article Link</label>
+                          <input id="article_link" name="article_link" type="text" value="${data.article_link}" class="w-100 form-control mb-3">
                         </div>
 
                         <div class="w-100">
@@ -466,7 +481,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn bg-gradient-danger" onclick="deleteData(${data.id})">Understood</button>
+                      <button type="button" class="btn bg-gradient-danger" onclick="deleteData(${data.id})">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -480,13 +495,28 @@
         dataExecuted()
           
     const deleteData = (id) => {
-      alert("Data dengan id " + id + " berhasil dihapus");
+      fetch(`http://localhost:3000/articles/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'login-token': getCookie('login-token'),
+        },
+        credentials: 'include',
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+        window.location.href = "http://localhost:3000/app/admin";
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
     }
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="./js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+  <script src="../../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
 </body>
 
 </html>

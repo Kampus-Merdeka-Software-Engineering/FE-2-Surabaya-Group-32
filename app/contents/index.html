@@ -82,16 +82,54 @@
         </a>
     </section>
 
-    <main class="container mt-2 pe-0">
-        <div class="row">
-            <img src="../../assets/google.png" alt="" width="300" height="200" style="object-fit: contain;">
+    <main class="container mt-2 pe-0" id="main-content">
+        <div id="image-content" class="row">
+            <div class="d-flex col justify-content-center align-content-center">
+                <img src="../../assets/google.png" alt="" width="300" height="300" style="object-fit: contain;">
+            </div>
+            <div class="d-flex flex-column col p-3">
+                <p class="mb-0">
+                    Published 2 hours ago on 04/11/2023
+                </p>
+                <p class="fw-bold">
+                    Adil Nursalam
+                </p>
+                <img src="../../assets/google.png" alt="" class="mx-auto" width="200" height="200" style="object-fit: contain;">
+            </div>
         </div>
         <div class="row">
-
+            <div id="data-content" class="col">
+                <h1 class="text-wrap">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                </h1>
+                <p class="text-wrap">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+                </p>
         </div>
     </main>
 
+    <script src="../../assets/js/global.js"></script>
     <script>
+        function formatTimeAgo(dateString) {
+            const currentDate = new Date();
+            const previousDate = new Date(dateString);
+            const timeDifference = currentDate - previousDate;
+            const seconds = Math.floor(timeDifference / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+
+            if (seconds < 60) {
+                return `${seconds} seconds ago`;
+            } else if (minutes < 60) {
+                return `${minutes} minutes ago`;
+            } else if (hours < 24) {
+                return `${hours} hours ago`;
+            } else {
+                return `${days} days ago`;
+            }
+        }
+
         const dataExecuted = async () =>{
             try {
                 var urls = window.location.href;
@@ -110,37 +148,54 @@
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'login-token' : getCookie('login-token')
                     },
                     credentials: 'include',
                 });
                 const data = await response.json();
-                const dataContent = document.getElementById('data-content');
-                var dataContentHTML = '';
-                function formatTimeAgo(dateString) {
-                    const currentDate = new Date();
-                    const previousDate = new Date(dateString);
-                    const timeDifference = currentDate - previousDate;
-                    const seconds = Math.floor(timeDifference / 1000);
-                    const minutes = Math.floor(seconds / 60);
-                    const hours = Math.floor(minutes / 60);
-                    const days = Math.floor(hours / 24);
-
-                    if (seconds < 60) {
-                        return `Updated ${seconds} seconds ago`;
-                    } else if (minutes < 60) {
-                        return `Updated ${minutes} minutes ago`;
-                    } else if (hours < 24) {
-                        return `Updated ${hours} hours ago`;
-                    } else {
-                        return `Updated ${days} days ago`;
-                    }
+                if (data.length < 1) {
+                    window.location.href = '/app/home/';
                 }
 
-                dataContent.innerHTML = dataContentHTML;
-                const setActive = data[0].tag_id;
-                const linkActive = document.getElementById(`link-${setActive}`);
-                linkActive.classList.add('active-link');
+                if (data[0].article_link) {
+                    const mainContent = document.getElementById('main-content');
+                    var mainContentHTML = '';
+                    mainContentHTML += `
+                        <iframe src="${data[0].article_link}" frameborder="0" class="min-vh-100 w-100"></iframe>
+                    `;
+                    mainContent.innerHTML = mainContentHTML;
+                } else {
+
+                    const imageContent = document.getElementById('image-content');
+                    const dataContent = document.getElementById('data-content');
+                    var imageContentHTML = '';
+                    var dataContentHTML = '';
+                    imageContentHTML += `
+                    <div class="d-flex col justify-content-center align-content-center">
+                        <img src="../../assets/${data[0].image}" alt="" width="300" height="300" style="object-fit: contain;">
+                    </div>
+                    <div class="d-flex flex-column col p-3">
+                        <p class="mb-0">
+                            Published ${formatTimeAgo(data[0].created_at)} on ${new Date(data[0].created_at).toLocaleDateString()}
+                        </p>
+                        <p class="fw-bold">
+                            ${data[0].publisher}
+                        </p>
+                        <img src="../../assets/${data[0].image}" alt="" class="mx-auto" width="200" height="200" style="object-fit: contain;">
+                    </div>
+                    `;
+                    dataContentHTML += `
+                        <h1 class="text-wrap">
+                            ${data[0].article_title}
+                        </h1>
+                        <p class="text-wrap">
+                            ${data[0].article_content}
+                        </p>
+                    `;
+                    
+                    imageContent.innerHTML = imageContentHTML;
+                    dataContent.innerHTML = dataContentHTML;
+                }
+                document.getElementById(`link-${data[0].tag_id}`).classList.add('active-link');
             } catch (error) {
                 console.log(error);
             }

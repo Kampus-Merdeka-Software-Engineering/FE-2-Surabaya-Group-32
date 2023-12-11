@@ -104,31 +104,17 @@
         </div>
     </main>
 
-    <script src="./index.js"></script>
+    <script src="../../assets/js/global.js"></script>
     <script>
-        function getCookie(cname) {
-            let name = cname + "=";
-            let ca = document.cookie.split(';');
-            for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-            }
+        
         const dataExecuted = async () =>{
             try {
                 var urls = window.location.href;
                 var urlObj = new URL(urls);
                 var execute = urlObj.searchParams.get("tag");
+                
                 var url = `http://localhost:3000/articles/`
-                if (execute === 0) {
-                    url = `http://localhost:3000/articles/`
-                } else if (execute === 7){
+                if (execute == 0 || execute == 7 || execute == null) {
                     url = `http://localhost:3000/articles/`
                 } else {
                     url = `http://localhost:3000/articles/tag/${execute}`
@@ -138,7 +124,6 @@
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'login-token' : getCookie('login-token')
                     },
                     credentials: 'include',
                 });
@@ -170,7 +155,7 @@
                 for (let i = 0; i < data.length; i++) {
                     if (i % 2 === 1) {
                         dataLeftHTML += `
-                        <a href="/cek" class="row my-2" style="background-color: #3991C9;">
+                        <a href="/app/content?id=${data[i].id}" class="row my-2" style="background-color: #3991C9;">
                             <div class="ps-0 row">
                                 <img src="../../assets/${data[i].image ? data[i].image : "image 4.png"}" alt="img" class="ratio-1x1 col" width="300" height="300" style="object-fit: contain;">
                                 <div class="text-white p-4 col">
@@ -189,7 +174,7 @@
                         `;
                     } else {
                         dataRightHTML += `
-                        <a href="/cek" class="row my-2 ms-1" style="background-color: #3991C9;">
+                        <a href="/app/content?id=${data[i].id}" class="row my-2 ms-1" style="background-color: #3991C9;">
                             <div class="d-flex ps-0">
                                 <img src="../../assets/${data[i].image ? data[i].image : "image 5.png"}" alt="img" width="200" height="200" class="ratio-1x1" style="object-fit: contain;">
                                 <div class="text-white p-2">
@@ -214,7 +199,7 @@
                 for (let i = 0; i < setActive.length; i++) {
                     setActive[i].classList.remove('active-link');
                 }
-                document.getElementById(`link-${execute}`).classList.add('active-link');
+                execute ? document.getElementById(`link-${execute}`).classList.add('active-link') : document.getElementById(`link-0`).classList.add('active-link');
             } catch (error) {
                 console.log(error);
             }
